@@ -121,8 +121,21 @@ Pod::Spec.new do |s|
   s.subspec 'full-gpl' do |ss|
     ss.source_files         = 'Classes/**/*'
     ss.public_header_files  = 'Classes/**/*.h'
-    ss.dependency 'ffmpeg-kit-ios-full-gpl', "6.0"
+    ss.vendored_frameworks = [
+      'ffmpegkit.xcframework',
+      'libavcodec.xcframework',
+      'libavdevice.xcframework',
+      'libavfilter.xcframework',
+      'libavformat.xcframework',
+      'libavutil.xcframework',
+      'libswresample.xcframework',
+      'libswscale.xcframework'
+    ]
     ss.ios.deployment_target = '12.1'
+    ss.source = {
+      :http => 'https://storage.cloud.google.com/pf-ffmpeg-binaries/ffmpeg-kit-full-gpl-6.0-ios-xcframework.zip',
+      :type => 'zip'
+    }
   end
 
   s.subspec 'full-gpl-lts' do |ss|
