@@ -11,7 +11,10 @@ Pod::Spec.new do |s|
   s.requires_arc        = true
   s.static_framework    = true
 
-  s.source              = { :path => '.' }
+  s.source = {
+    :http => 'https://your-host.com/ffmpeg-kit-full-gpl-6.0-ios-xcframework.zip',
+    :type => 'zip'
+  }
   s.source_files        = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
 
@@ -132,10 +135,6 @@ Pod::Spec.new do |s|
       'libswscale.xcframework'
     ]
     ss.ios.deployment_target = '12.1'
-    ss.source = {
-      :http => 'https://storage.cloud.google.com/pf-ffmpeg-binaries/ffmpeg-kit-full-gpl-6.0-ios-xcframework.zip',
-      :type => 'zip'
-    }
   end
 
   s.subspec 'full-gpl-lts' do |ss|
