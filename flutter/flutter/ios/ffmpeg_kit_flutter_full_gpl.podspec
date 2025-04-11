@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.static_framework    = true
 
   s.source = {
-    :http => 'https://your-host.com/ffmpeg-kit-full-gpl-6.0-ios-xcframework.zip',
+    :http => 'https://storage.cloud.google.com/pf-ffmpeg-binaries/ffmpeg-kit-full-gpl-6.0-ios-xcframework.zip',
     :type => 'zip'
   }
   s.source_files        = 'Classes/**/*'
