@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.source_files        = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
 
-  s.default_subspec     = 'full-gpl'
+  s.default_subspec     = 'ffmpeg_kit_macos_local'
 
   s.dependency          'FlutterMacOS'
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
@@ -130,6 +130,22 @@ Pod::Spec.new do |s|
     ss.public_header_files  = 'Classes/**/*.h'
     ss.dependency 'ffmpeg-kit-macos-full-gpl', "6.0.LTS"
     ss.osx.deployment_target = '10.12'
+  end
+
+  s.subspec 'ffmpeg_kit_macos_local' do |ss|
+    ss.source_files         = 'Classes/**/*'
+    ss.public_header_files  = 'Classes/**/*.h'
+    ss.vendored_frameworks = [
+      'Framework/ffmpeg-kit-macos-full-gpl/ffmpegkit.xcframework',
+      'Framework/ffmpeg-kit-macos-full-gpl/libavcodec.xcframework',
+      'Framework/ffmpeg-kit-macos-full-gpl/libavdevice.xcframework',
+      'Framework/ffmpeg-kit-macos-full-gpl/libavfilter.xcframework',
+      'Framework/ffmpeg-kit-macos-full-gpl/libavformat.xcframework',
+      'Framework/ffmpeg-kit-macos-full-gpl/libavutil.xcframework',
+      'Framework/ffmpeg-kit-macos-full-gpl/libswresample.xcframework',
+      'Framework/ffmpeg-kit-macos-full-gpl/libswscale.xcframework'
+    ]
+    ss.osx.deployment_target = '10.15'
   end
 
 end

@@ -11,14 +11,11 @@ Pod::Spec.new do |s|
   s.requires_arc        = true
   s.static_framework    = true
 
-  s.source = {
-    :http => 'https://storage.cloud.google.com/pf-ffmpeg-binaries/ffmpeg-kit-full-gpl-6.0-ios-xcframework.zip',
-    :type => 'zip'
-  }
+  s.source              = { :path => '.' }
   s.source_files        = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
 
-  s.default_subspec     = 'full-gpl'
+  s.default_subspec     = 'ffmpeg_kit_ios_local'
 
   s.dependency          'Flutter'
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
@@ -124,16 +121,7 @@ Pod::Spec.new do |s|
   s.subspec 'full-gpl' do |ss|
     ss.source_files         = 'Classes/**/*'
     ss.public_header_files  = 'Classes/**/*.h'
-    ss.vendored_frameworks = [
-      'ffmpegkit.xcframework',
-      'libavcodec.xcframework',
-      'libavdevice.xcframework',
-      'libavfilter.xcframework',
-      'libavformat.xcframework',
-      'libavutil.xcframework',
-      'libswresample.xcframework',
-      'libswscale.xcframework'
-    ]
+    ss.dependency 'ffmpeg-kit-ios-full-gpl', "6.0"
     ss.ios.deployment_target = '12.1'
   end
 
@@ -142,6 +130,22 @@ Pod::Spec.new do |s|
     ss.public_header_files  = 'Classes/**/*.h'
     ss.dependency 'ffmpeg-kit-ios-full-gpl', "6.0.LTS"
     ss.ios.deployment_target = '10'
+  end
+
+  s.subspec 'ffmpeg_kit_ios_local' do |ss|
+    ss.source_files         = 'Classes/**/*'
+    ss.public_header_files  = 'Classes/**/*.h'
+    ss.vendored_frameworks = [
+      'Framework/ffmpeg-kit-ios-full-gpl/ffmpegkit.xcframework',
+      'Framework/ffmpeg-kit-ios-full-gpl/libavcodec.xcframework',
+      'Framework/ffmpeg-kit-ios-full-gpl/libavdevice.xcframework',
+      'Framework/ffmpeg-kit-ios-full-gpl/libavfilter.xcframework',
+      'Framework/ffmpeg-kit-ios-full-gpl/libavformat.xcframework',
+      'Framework/ffmpeg-kit-ios-full-gpl/libavutil.xcframework',
+      'Framework/ffmpeg-kit-ios-full-gpl/libswresample.xcframework',
+      'Framework/ffmpeg-kit-ios-full-gpl/libswscale.xcframework'
+    ]
+    ss.ios.deployment_target = '12.1'
   end
 
 end
